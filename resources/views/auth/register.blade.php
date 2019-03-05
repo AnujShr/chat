@@ -14,7 +14,7 @@
 
         <div class="account-right">
             <div class="form-area">
-                <form action="">
+                <form method="POST" action="{{ route('register') }}">
                     <div class="group">
                         <h2 class="form-heading">Create new account</h2>
                     </div> <!--close group -->
