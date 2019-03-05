@@ -24,3 +24,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/chat', 'front/chat/index');
+Route::view('/profile/change-password', 'front/profile/change_password')->name('user.change_password');
+Route::view('/profile', 'front/profile/profile')->name('user.profile');

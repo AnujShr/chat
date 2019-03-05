@@ -1,0 +1,25 @@
+<div class="emoji">
+    <img src="{{asset('images/emoji/thumbs-up.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/heart-suit.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/grinning-face-with-big-eyes.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/grinning-face-with-smiling-eyes.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/beaming-face-with-smiling-eyes.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/grinning-squinting-face.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/grinning-face-with-sweat.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/rolling-on-the-floor-laughing.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/face-with-tears-of-joy.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/slightly-smiling-face.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/upside-down-face.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/winking-face.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/smiling-face-with-smiling-eyes.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/smiling-face-with-halo.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/smiling-face-with-heart-eyes.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/star-struck.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/face-blowing-a-kiss.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/kiss.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/smiling-face.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/face-savoring-food.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/face-with-tongue.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/adult.png')}}" alt="" class="emoji-same">
+    <img src="{{asset('images/emoji/basketball.png')}}" alt="" class="emoji-same">
+</div><!-- close emoji -->
