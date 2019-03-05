@@ -4823,6 +4823,10 @@ body {
         color: var(--color-black);
     }
 
+    .form-grid {
+        width: 100%;
+    }
+
 }
 
 
