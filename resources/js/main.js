@@ -1,6 +1,7 @@
 $(function () {
     $('.custom-bars').click(function () {
-        $("#sidebar").slideToggle();
-        $("#right-area").toggle("slow");
+        $("#sidebar").slideToggle(500, function () {
+            $("#right-area").toggle("slow");
+        });
     });
 });

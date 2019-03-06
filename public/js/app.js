@@ -36586,7 +36586,7 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./register/index */ "./resources/js/register/index.js");
+__webpack_require__(/*! ./signup/index */ "./resources/js/signup/index.js");
 
 __webpack_require__(/*! ./main */ "./resources/js/main.js");
 
@@ -36659,8 +36659,9 @@ if (token) {
 
 $(function () {
   $('.custom-bars').click(function () {
-    $("#sidebar").slideToggle();
-    $("#right-area").toggle("slow");
+    $("#sidebar").slideToggle(500, function () {
+      $("#right-area").toggle("slow");
+    });
   });
 });
 
@@ -36668,7 +36669,7 @@ $(function () {
 
 /***/ "./resources/js/signup/index.js":
 /*!**************************************!*\
-  !*** ./resources/js/register/index.js ***!
+  !*** ./resources/js/signup/index.js ***!
   \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
