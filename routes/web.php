@@ -12,13 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('test/index');
+    return view('auth.register');
 });
-Route::resource('test', 'TestController');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

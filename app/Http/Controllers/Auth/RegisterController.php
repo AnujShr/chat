@@ -4,20 +4,18 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\UserImage;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Exception\ImageException;
 use Intervention\Image\Exception\NotReadableException;
-use Intervention\Image\Exception\NotWritableException;
 use Intervention\Image\Facades\Image;
-use League\Flysystem\NotSupportedException;
 
 class RegisterController extends Controller
 {
@@ -41,7 +39,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -66,6 +64,10 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'profile_pic' => ['required', 'mimes:jpeg,jpg,png']
+        ], [
+            'profile_pic.required' => 'Profile Image is required',
+            'profile_pic.mimes' => ' Only supports JPG, JPEG and PNG Files'
+
         ]);
     }
 
@@ -93,8 +95,8 @@ class RegisterController extends Controller
         $user->push();
         $path = $this->storagePath . str_replace('.', '_', $profilePic);
         $newPath = $this->storagePath . $user->id;
-        Storage::move($path, $newPath);
         /** @noinspection PhpUndefinedMethodInspection */
+        Storage::move($path, $newPath);
         return $user;
     }
 
@@ -109,6 +111,7 @@ class RegisterController extends Controller
         $unique = uniqid() . rand() . md5(microtime());
         $fileName = $unique . '.' . $extension;
         $path = $this->storagePath . str_replace('.', '_', $fileName);
+        /** @noinspection PhpUndefinedMethodInspection */
         $a = Storage::putFileAs($path, $file, $fileName);
 
         foreach (config('image_sizes.profile_pic') as $type => $value) {
@@ -119,14 +122,17 @@ class RegisterController extends Controller
                     })
                     ->encode($mimetype, 100);
                 $newFileName = $fileName . '-' . $type . '.' . $extension;
+                /** @noinspection PhpUndefinedMethodInspection */
                 Storage::put($path . '/' . $newFileName, $img);
 
             } catch (Exception $exception) {
+                /** @noinspection PhpUndefinedMethodInspection */
                 Storage::delete($path);
                 throw ValidationException::withMessages([
                     'profile_pic' => ['Something Went Wrong! Please Try again later']
                 ]);
             } catch (NotReadableException $exception) {
+                /** @noinspection PhpUndefinedMethodInspection */
                 Storage::delete($path);
                 throw ValidationException::withMessages([
                     'profile_pic' => ['Image Source Not readable']
@@ -140,5 +146,14 @@ class RegisterController extends Controller
         }
         return $fileName;
 
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+        $message = 'You have been successfully registered. Please check your email address for the email verification link.';
+        return redirect($this->redirectPath())->with('success', $message);
     }
 }

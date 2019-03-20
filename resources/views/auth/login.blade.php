@@ -14,10 +14,21 @@
 
         <div class="account-right">
             <div class="form-area">
-                <form action="">
+                @if(Session::has('success'))
+                    <div class="alert alert-error">
+                        {{Session::get('success')}}
+                    </div>
+                @endif
+                <form method="post" action="{{ route('login') }}">
+                    @csrf
                     @include('auth.partials.login.form');
                 </form>
+                @if (Route::has('password.request'))
+                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                        {{ __('Forgot Your Password?') }}
+                    </a>
+                @endif
             </div>
         </div><!-- close account right -->
-    </div><!--  Close register containter -->
+    </div><!--  Close signup-container -->
 @endsection
